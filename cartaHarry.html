@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Akshar:wght@700&family=Amethysta&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fonts.css">
+</head>
+<body id="bodyCartaHarry">
+
+    <div id="headerTemplate">
+        <component v-bind:is="vista"></component>
+    </div>
+
+    <!-- hasta aca header -->
+
+
+    <div class="contenedorCartaHarry" id="datosCarta">
+        <div class="selectorArea" id="selectorNombre" >
+            <p class="titulitoSelect">NOMBRE PERSONAJE: </p>
+            <select id="selectName" class="selectEach" v-model="selectedName" >
+                <option disabled value="">Seleccione personaje</option>
+                <option v-for="nombre in nombres" :value="nombre">{{nombre}}</option>
+            <p>{{nombreOk}}</p>
+            </select>   
+        </div>
+
+        <div id="fotoCarta" v-if="srcImg" :style="{ 'background-image': 'url(' + srcImg + ')' }">
+        </div>
+
+        <div class="selectorArea">
+            <p class="titulitoSelect">CASA:</p>
+            <select name="" id="" class="selectEach" v-model="selectedHouse">
+                <option disabled value="">Seleccione casa</option>
+                <option v-for="casa in casas" :value="casa">{{casa}}</option>
+            </select>
+        </div>
+
+        <div class="selectorArea">
+            <p class="titulitoSelect">ACTOR/ACTRIZ:</p>
+            <select name="" id="" class="selectEach" v-model="selectedActore">
+                <option disabled value="">Seleccione actor/actriz</option>
+                <option v-for="actore in actores" :value="actore">{{actore}}</option>
+            </select>
+        </div>
+      
+        <div id="botoneraFinal">
+            <a href="#escribeNombre" >
+                <input type="submit" value="*ENVIAR*" class="botonRojo" @click="puntuar()">
+            </a>   
+        </div>
+    
+
+        <!-- NOMBRE MAGICO -->
+        <div class="contenedorNombre" id="app">   
+            <Transition name="slide-fade"> 
+            <div class="selectorArea" id="selectorNombre" v-show="show">
+                <p class="textoPadding" id="escribeNombre">ESCRIBE TU NOMBRE: </p>
+                <input class="selectEach" 
+                    v-model="nombreIngresado" id="inputNombre">
+            </div>
+            </transition>
+            
+            <button id="botonDesaparece" v-if="nombreIngresado" class="botonRojo" @click="mostrarNombreInv" v-show="show">VER NOMBRE MÁGICO</button>
+            <div v-show="show3">
+            <p class="textoPadding" v-if="nombreInv" id="textoMensaje" class="desaparece">{{mensaje}}</p>
+            
+            <transition name="fade">
+                <div id="vueNombreInvertido"> {{nombreInv}}</div> 
+            </transition>
+                 <div id="harryCarita">
+                     <img src="img/harry-potter-svgrepo-com.svg" alt="imagen harry potter" height="200px">
+                </div>
+            </div>
+
+            
+        </div>
+        
+
+            
+        
+            <!-- PUNTAJES -->
+        <div id="seccionPuntajes">
+            <div id="pergaminoPuntaje">
+                <ul id="listaPuntajes" v-show="show2">
+                    <li class="listaRecords" id="tuPuntaje">{{nombreInv}} : {{puntaje}}</li>
+                    <li class="listaRecords" v-show="show4" id="recordOk">   PUNTAJE RECORD!!!  </li>
+                    <li class="listaRecords"> ***  PUNTAJES LEGENDARIOS  ***</li>
+                    <li class="listaRecords" v-for="(key, value) in objPuntajes">{{value}} : {{key}}pts.</li>
+                     
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="contenedorNombre">
+            <div id="botoneraFinalNombre">
+               
+                
+                <a href="#headerTemplate" class="botonLink">
+                <button type="button" class="botonAmarillo" @click="nuevaCarta()">NUEVA CARTA</a></button> 
+                </a>
+            </div>
+        </div>
+        <a href="/terminar.html" class="botonLink">
+        <button type="button" class="botonRojo" >TERMINAR JUEGO</a></button></a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8"></script>
+    <!-- <script src="nombreMagico.js"></script> -->
+    <script src="scriptCarta.js"></script>
+    
+</html>

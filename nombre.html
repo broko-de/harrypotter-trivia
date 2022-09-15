@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Akshar:wght@700&family=Amethysta&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    
+</head>
+<body id="bodyNombre">
+
+    <div id="headerTemplate">
+       <component v-bind:is="vista"></component>
+    </div>
+
+    <!-- hasta aca header -->
+
+    <div class="contenedorNombre" id="app">   
+        <Transition name="slide-fade"> 
+        <div class="selectorArea" id="selectorNombre" v-show="show">
+            <p class="textoPadding" id="escribeNombre">ESCRIBE TU NOMBRE: </p>
+             <input class="selectEach" 
+                v-model="nombreIngresado" id="inputNombre">
+        </div>
+        </transition>
+        <button id="botonDesaparece" v-if="nombreIngresado" class="botonRojo" @click.once="mostrarNombreInv" v-show="show">ENVIAR</button>
+        
+        <p class="textoPadding" v-if="nombreInv" id="textoMensaje" class="desaparece">{{mensaje}}</p>
+        <div id="pergaminoConNombre">
+            <div id="pergamino"></div>
+            <transition name="fade">
+                <div id="vueNombreInvertido"> {{nombreInv}}</div>
+            </transition>
+        </div>
+    </div>
+        <div class="contenedorNombre">
+            <div id="botoneraFinalNombre">
+                <button type="button" class="botonAmarillo"><a href="/puntajes.html" class="linkBotones"> VER PUNTAJES </a></button>  
+                <button type="button" class="botonRojo"> <a href="/nuevaCarta.html" class="linkBotones"> NUEVA CARTA </a></button>
+            </div>
+        </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="nombreMagico.js"></script>
+    <script src="script.js"></script>
+    
+   </body>
+</html> 
